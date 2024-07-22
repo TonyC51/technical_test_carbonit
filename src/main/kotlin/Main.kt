@@ -12,11 +12,13 @@ import java.io.File
 fun main(args: Array<String>) {
 
     //  generate proper data and handle any bad format
-    val formatted: BaseData? = Formatter((File(args[0]).bufferedReader().readLines())).formatData()
+    val inputFileName = args[0]
+    val outputFileName = "output.txt"
+    val formatted: BaseData? = Formatter((File(inputFileName).bufferedReader().readLines())).formatData()
 
     formatted?.let {
         val game = Game(formatted)
-        val writer = Writer(game = game, fileName = "toto.txt")
+        val writer = Writer(game = game, fileName = outputFileName)
 
         game.generateMap()
 
@@ -39,6 +41,8 @@ private fun printMap(game: Game) {
 
 fun run(game: Game) {
     for (adv in game.adventurers) {
+        /* execute round by round, round priority is respected naturally
+         because adventurers are added line by line from start to end of file */
         if (adv.steps.isNotEmpty()) {
             adv.executeMove(game, adv.steps[0])
             // remove done step
@@ -50,6 +54,5 @@ fun run(game: Game) {
         for (step in adv.steps) {
             adv.executeMove(game, step)
         }
-
     }
 }

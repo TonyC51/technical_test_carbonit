@@ -19,7 +19,7 @@ data class Formatter(val lines: List<String>) {
 
         /*
             use of regex to avoid any format error from the input file
-            can be replaced by split() method for better performance if we trust the file
+            it could be replaced by split(" - ") method for better performance if we trust the file
          */
 
         val treasurRegex = Regex("([CMTA]) - ([0-9]) - ([0-9]) - ([0-9])")

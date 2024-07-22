@@ -32,14 +32,8 @@ data class Game(val baseData: BaseData) {
         }
 
         fun placeElement(element: String, axeX: Int, axeY: Int) {
-            gameMap[axeY][axeX] = element
-        }
-
-        fun printMap() {
-            for (line in gameMap) {
-                println(line.joinToString(" "))
-            }
-            println()
+            if (axeX >= 0 && axeX < gameMap[0].size && axeY >= 0 && axeY < gameMap.size )
+                gameMap[axeY][axeX] = element
         }
 
     }
@@ -49,11 +43,6 @@ data class Game(val baseData: BaseData) {
         val mountainsData: MutableSet<Pair<Int, Int>>,
         val treasures: MutableMap<Pair<Int, Int>, Int>,
         val adventurer: MutableSet<Adventurer>
-    )
-
-    data class AdventurerPosition(
-        val xAxis: Int,
-        val yAxis: Int,
     )
 
     enum class Direction {
@@ -106,6 +95,7 @@ data class Game(val baseData: BaseData) {
 
             val newPos = Pair(newX, newY)
 
+            // check if position is not out of bounds, on a mountain or if an adventurer is not already on the slot
             if (newPos.second in 0 until game.gameMap.size
                 && newPos.first in 0 until game.gameMap[0].size
                 && newPos !in game.mountains
