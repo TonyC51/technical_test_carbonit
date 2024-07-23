@@ -48,11 +48,5 @@ fun run(game: Game) {
             // remove done step
             adv.steps.sliceArray(1 until adv.steps.size)
         }
-
-        println()
-
-        for (step in adv.steps) {
-            adv.executeMove(game, step)
-        }
     }
 }
