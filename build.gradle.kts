@@ -10,8 +10,8 @@ repositories {
 }
 
 dependencies {
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("io.kotest:kotest-assertions-core:5.8.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test:1.5.31")
+    testImplementation("org.junit.jupiter:junit-jupiter")
 }
 
 tasks.test {
